@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/latestMoviesFragment"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="@string/latest_page" />
+    <item
+        android:id="@+id/searchMoviesFragment"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/search_page" />
+
+</menu>

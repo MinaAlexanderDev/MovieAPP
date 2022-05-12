@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Movie APP </string>
+    <string name="results_could_not_be_loaded">Results could not be loaded</string>
+    <string name="no_results_found_for_this_query">No results found for this query</string>
+    <string name="title">title</string>
+    <string name="retry">Retry</string>
+    <string name="search">Search</string>
+    <string name="vote">vote</string>
+    <string name="item_image_dis">image</string>
+    <string name="search_page">Search</string>
+    <string name="latest_page">Latest</string>
+    <string name="dis"> Description    </string>
+    <string name="movie_image">MovieImage</string>
+    <string name="results_not_loaded">Results could not be loaded</string>
+    <string name="no_results_found">No results found for this query</string>
+
+</resources>

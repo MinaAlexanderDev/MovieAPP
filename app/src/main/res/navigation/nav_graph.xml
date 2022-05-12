@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/latestMoviesFragment">
+    <fragment
+        android:id="@+id/latestMoviesFragment"
+        android:name="com.mina.movie.ui.latest.LatestMoviesFragment"
+        android:label="Latest"
+        tools:layout="@layout/fragment_latest">
+        <action
+            android:id="@+id/action_trendingMoviesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchMoviesFragment"
+        android:name="com.mina.movie.ui.searcher.SearchMoviesFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search">
+
+        <action
+            android:id="@+id/action_moviesSearchFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.mina.movie.ui.details.DetailsFragment"
+        android:label="Details"
+        tools:layout="@layout/list_item_movies">
+        <argument
+            android:name="movie"
+            app:argType="com.mina.movie.model.remotemoviesmodel.Movie" />
+    </fragment>
+
+</navigation>
