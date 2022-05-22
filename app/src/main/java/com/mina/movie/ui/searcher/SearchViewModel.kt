@@ -1,15 +1,15 @@
-package com.mina.movie.ui.viewmodel
+package com.mina.movie.ui.searcher
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
+import androidx.paging.*
+import com.mina.movie.api.ServiceAPI
 import com.mina.movie.model.remotemoviesmodel.Movie
-import com.mina.movie.repository.MoviesDataRepository
+import com.mina.movie.pagingsource.PagingSourcesSearchMovies
 
-class MoviesViewModel @ViewModelInject constructor(
-    private val repository: MoviesDataRepository,
+class SearchViewModel @ViewModelInject constructor(
+    private val api: ServiceAPI,
     @Assisted state: SavedStateHandle
 ) : ViewModel() {
 
@@ -18,12 +18,20 @@ class MoviesViewModel @ViewModelInject constructor(
 
     //livedata of search movie
     val searchMoviesData = currentQuery.switchMap { queryString ->
-        if (queryString != null) {
-            if (queryString != "") {
-                searchList = repository.getSearchDataResults(queryString)!!.cachedIn(viewModelScope)
-            } else {
-                searchList!!.cachedIn(viewModelScope)
-            }
+        if (queryString != null&&queryString != "" ){
+
+                searchList =    Pager(
+                    config = PagingConfig(
+                        pageSize = 10,
+                        maxSize = 30,
+                        enablePlaceholders = false
+                    ),
+                    pagingSourceFactory = { PagingSourcesSearchMovies(api,queryString) }
+                ).liveData.cachedIn(viewModelScope)
+
+
+        } else {
+            searchList!!.cachedIn(viewModelScope)
         }
         searchList!!.cachedIn(viewModelScope)
 
@@ -32,8 +40,6 @@ class MoviesViewModel @ViewModelInject constructor(
     //live data of search movies to sort the last search data from searchMoviesData
     private var searchList: LiveData<PagingData<Movie>>? = searchMoviesData
 
-    //livedata of Latest movie
-    val latestMoviesData = repository.getLatestDataResults()!!.cachedIn(viewModelScope)
 
     fun searchQuery(query: String) {
         currentQuery.value = query

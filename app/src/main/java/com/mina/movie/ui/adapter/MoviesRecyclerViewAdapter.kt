@@ -12,7 +12,7 @@ import com.mina.movie.databinding.ListItemMoviesBinding
 import com.mina.movie.model.remotemoviesmodel.Movie
 import com.mina.movie.utilies.Constants
 
-class MoviesRecyclerViewAdapter(private val listener: OnListItemClick) :
+class MoviesRecyclerViewAdapter(private val listener: OnClickMovie) :
     PagingDataAdapter<Movie,
             MoviesRecyclerViewAdapter.ImageViewHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -43,7 +43,7 @@ class MoviesRecyclerViewAdapter(private val listener: OnListItemClick) :
                 if (position != RecyclerView.NO_POSITION) {
                     val item = getItem(position)
                     if (item != null) {
-                        listener.onItemSelect(item)
+                        listener.onMovieSelect(item)
                     }
                 }
             }

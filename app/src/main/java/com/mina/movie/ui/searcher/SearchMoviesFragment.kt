@@ -16,16 +16,15 @@ import com.mina.movie.databinding.FragmentSearchBinding
 import com.mina.movie.model.remotemoviesmodel.Movie
 import com.mina.movie.ui.adapter.LoaderStateAdapter
 import com.mina.movie.ui.adapter.MoviesRecyclerViewAdapter
-import com.mina.movie.ui.adapter.OnListItemClick
-import com.mina.movie.ui.viewmodel.MoviesViewModel
+import com.mina.movie.ui.adapter.OnClickMovie
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SearchMoviesFragment : Fragment(R.layout.fragment_search), OnListItemClick {
+class SearchMoviesFragment : Fragment(R.layout.fragment_search), OnClickMovie {
 
-    private val viewModel by viewModels<MoviesViewModel>()
+    private val viewModel by viewModels<SearchViewModel>()
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
@@ -103,7 +102,7 @@ class SearchMoviesFragment : Fragment(R.layout.fragment_search), OnListItemClick
         _binding = null
     }
 
-    override fun onItemSelect(movie: Movie) {
+    override fun onMovieSelect(movie: Movie) {
         //action to move to details fragment with selected movie
         val action =
             SearchMoviesFragmentDirections.actionMoviesSearchFragmentToDetailsFragment(movie)

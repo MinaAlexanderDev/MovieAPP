@@ -1,19 +1,25 @@
 package com.mina.movie.repository
 
+import com.mina.movie.api.ServiceAPI
 import com.mina.movie.model.remotemoviesmodel.MoviesDataModel
-import com.mina.movie.remotedata.RemoteRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 
-class RepositoryImp @Inject constructor(
-    private val remoteRepository: RemoteRepository,
-) : Repository {
+class RepositoryImp @Inject constructor(private val serviceAPI: ServiceAPI) : ServiceAPI {
 
-    override suspend fun getLatestMoviesData(page: Int): Response<MoviesDataModel> {
-        return remoteRepository.getLatestMovies(page)
+override suspend fun getLatestMoviesData(page: Int):MoviesDataModel =
+        withContext(Dispatchers.IO) {
+            serviceAPI.getLatestMoviesData(page)
     }
 
-    override suspend fun getSearchMovies(query: String, page: Int): Response<MoviesDataModel> {
-        return remoteRepository.getSearchMovies(query, page)
+    //get the search movies from server
+    override suspend fun getSearchMovies(
+        query: String,
+        page: Int
+    ): MoviesDataModel= withContext(Dispatchers.IO) {
+        serviceAPI.getSearchMovies(query, page)
     }
+
 }

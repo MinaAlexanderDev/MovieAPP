@@ -82,7 +82,8 @@ dependencies {
     // Paging 3
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
     implementation 'com.google.code.gson:gson:2.8.5'
-
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.1'
+    testImplementation "android.arch.core:core-testing:1.1.1"
 }
 kapt {
     correctErrorTypes true

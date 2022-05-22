@@ -13,9 +13,10 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.mina.movie.R
 import com.mina.movie.databinding.FragmentDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_details.*
 
-
+@AndroidEntryPoint
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private val args by navArgs<DetailsFragmentArgs>()

@@ -12,14 +12,13 @@ import com.mina.movie.databinding.FragmentLatestBinding
 import com.mina.movie.model.remotemoviesmodel.Movie
 import com.mina.movie.ui.adapter.LoaderStateAdapter
 import com.mina.movie.ui.adapter.MoviesRecyclerViewAdapter
-import com.mina.movie.ui.adapter.OnListItemClick
-import com.mina.movie.ui.viewmodel.MoviesViewModel
+import com.mina.movie.ui.adapter.OnClickMovie
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LatestMoviesFragment : Fragment(R.layout.fragment_latest), OnListItemClick {
+class LatestMoviesFragment : Fragment(R.layout.fragment_latest), OnClickMovie {
 
-    private val viewModel by viewModels<MoviesViewModel>()
+    private val viewModel by viewModels<LatestViewModel>()
     private var _binding: FragmentLatestBinding? = null
     private val binding get() = _binding!!
 
@@ -71,7 +70,7 @@ class LatestMoviesFragment : Fragment(R.layout.fragment_latest), OnListItemClick
         _binding = null
     }
 
-    override fun onItemSelect(movie: Movie) {
+    override fun onMovieSelect(movie: Movie) {
         //action to move to details fragment with selected movie
         val action =
             LatestMoviesFragmentDirections.actionTrendingMoviesFragmentToDetailsFragment(movie)

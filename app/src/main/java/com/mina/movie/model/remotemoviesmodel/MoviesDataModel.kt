@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 data class MoviesDataModel(
     //the return model of the request of Search or Latest
     @SerializedName("page") var page: Int? = null,
-    @SerializedName("results") var results: ArrayList<Movie> = arrayListOf(),
+    @SerializedName("results") var results: List<Movie> = arrayListOf(),
     @SerializedName("total_pages") var totalPages: Int? = null,
     @SerializedName("total_results") var totalResults: Int? = null
 
